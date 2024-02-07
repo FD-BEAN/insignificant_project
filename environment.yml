@@ -1,0 +1,12 @@
+name: lingjin-dev
+channels:
+- defaults
+dependencies:
+- python=3.9
+- pip=22.1.2
+- pip:
+    - pandas==2.0.1
+    - numpy==1.24.3
+    - plotly==5.14.1
+    - scipy==1.11.4
+    - adata==1.2.0
