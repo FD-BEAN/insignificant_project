@@ -1,31 +1,25 @@
 import imp
-fp, pathname, description = imp.find_module('utils')
-utils = imp.load_module('utils', fp, pathname, description)
-from utils import *
+import utils
+import data_util
+import config as cfg
+from datetime import date, timedelta
+imp.reload(utils)
+imp.reload(data_util)
+imp.reload(cfg)
 
-fp, pathname, description = imp.find_module('data_util')
-data_util = imp.load_module('data_util', fp, pathname, description)
-from data_util import *
+# data_ssutil = data_util.StockSummaryWrapper()
+# setting = cfg.Settings()
 
-fp, pathname, description = imp.find_module('config')
-config = imp.load_module('config', fp, pathname, description)
-from config import *
-
-import numpy as np
-
-data_ssutil = StockSummaryWrapper()
-setting = Settings()
-
-tik1 = ticker_1
-tik2 = ticker_2
+tik1 = cfg.ticker_1
+tik2 = cfg.ticker_2
 n_days = 260
 end_date = date.today()
 start_date = end_date - timedelta(days=n_days)
 
-stock_df = get_universe_price_data('all_indices', 'all_index_members', '399020')
-correl_df = get_universe_correlation(start_date, end_date, ticker_1=tik1, stock_df=stock_df)
+stock_df = utils.get_universe_price_data('all_indices', 'all_index_members', '399020')
+correl_df = utils.get_universe_correlation(start_date, end_date, ticker_1=tik1, stock_df=stock_df)
 
-hedge_basket = generate_weighted_hedge_basket(correl_df, trade_date=correl_df.sort_values(by='trade_date').trade_date.unique()[-1])
+hedge_basket = utils.generate_weighted_hedge_basket(correl_df, trade_date=correl_df.sort_values(by='trade_date').trade_date.unique()[-1])
 
 
 #

@@ -1,20 +1,25 @@
 import pandas as pd
 import adata as ad_util
 from sspipe import px, p
+import os
+
 
 class StockSummaryWrapper:
 
-    def __init__(self):
+    def __init__(self, master_dir=r'C:\Github\data\stocks'):
+        self.master_dir = master_dir
+        if not os.path.exists(master_dir):
+            os.mkdir(master_dir)
         self.data_dirs = {
-            'all_stocks': r'C:\Github\data\stocks\all_stock_tickers.pkl',
-            'all_concepts': r'C:\Github\data\stocks\all_concept_tickers.pkl',
-            'all_constituents': r'C:\Github\data\stocks\all_INDEXPLACEHOLDER_member_tickers.pkl',
-            'all_concepts_east': r'C:\Github\data\stocks\all_concept_tickers_east.pkl',
-            'all_constituents_east': r'C:\Github\data\stocks\all_INDEXPLACEHOLDER_member_tickers_east.pkl',
-            'all_indices': r'C:\Github\data\stocks\all_indices.pkl',
-            'all_etf': r'C:\Github\data\stocks\all_etf.pkl',
-            'all_cb': r'C:\Github\data\stocks\all_cb.pkl',
-            'all_index_members': r'C:\Github\data\stocks\all_INDEXPLACEHOLDER_index_members.pkl'
+            'all_stocks': fr'{master_dir}\all_stock_tickers.pkl',
+            'all_concepts': fr'{master_dir}\all_concept_tickers.pkl',
+            'all_constituents': fr'{master_dir}\all_INDEXPLACEHOLDER_member_tickers.pkl',
+            'all_concepts_east': fr'{master_dir}\all_concept_tickers_east.pkl',
+            'all_constituents_east': fr'{master_dir}\all_INDEXPLACEHOLDER_member_tickers_east.pkl',
+            'all_indices': fr'{master_dir}\all_indices.pkl',
+            'all_etf': fr'{master_dir}\all_etf.pkl',
+            'all_cb': fr'{master_dir}\all_cb.pkl',
+            'all_index_members': fr'{master_dir}\all_INDEXPLACEHOLDER_index_members.pkl'
         }
 
     def print_available_keywords(self):
