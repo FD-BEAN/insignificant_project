@@ -2,7 +2,6 @@ import pandas as pd
 import adata as ad_util
 from sspipe import px, p
 
-
 class StockSummaryWrapper:
 
     def __init__(self):
